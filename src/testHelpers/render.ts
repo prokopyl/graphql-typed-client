@@ -7,7 +7,7 @@ import {
   GraphQLSchema,
   IntrospectionQuery,
 } from 'graphql'
-import { BuiltInParserName } from 'prettier'
+// import { BuiltInParserName } from 'prettier'
 import { RenderContext } from '../render/common/RenderContext'
 import { readFileFromPath } from '../helpers/files'
 
@@ -31,7 +31,7 @@ export const toClientSchema = async (schemaGql: string) => {
   return buildClientSchema(introspectionResponse.data)
 }
 
-export const schemaRenderTest = async (schemaGql: string, renderer: SchemaRenderer, parser?: BuiltInParserName) => {
+export const schemaRenderTest = async (schemaGql: string, renderer: SchemaRenderer, parser?: any) => {
   const schema = await toClientSchema(schemaGql)
 
   const ctx = new RenderContext(schema)
@@ -45,7 +45,7 @@ export const typeRenderTest = async (
   schemaGql: string,
   renderer: TypeRenderer,
   typeNames: string[],
-  parser?: BuiltInParserName,
+  parser?: any,
 ) => {
   const schema = await toClientSchema(schemaGql)
 

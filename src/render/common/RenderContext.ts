@@ -1,5 +1,5 @@
 import { GraphQLSchema } from 'graphql'
-import { BuiltInParserName } from 'prettier'
+// import { BuiltInParserName } from 'prettier'
 import { Config } from '../../config'
 import { prettify } from '../../helpers/prettify'
 import { relativeImportPath } from './relativeImportPath'
@@ -68,7 +68,7 @@ export class RenderContext {
     else return
   }
 
-  toCode(parser?: BuiltInParserName) {
+  toCode(parser?: any) {
     const blocks = [...this.codeBlocks]
 
     if (parser && (parser === 'typescript' || parser === 'babel')) {
