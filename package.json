@@ -20,7 +20,7 @@
     "custom-scalar"
   ],
   "version": "1.7.0",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "types": "./src/index.ts",
   "repository": "git@github.com:helios1138/graphql-typed-client.git",
   "author": "helios1138 <revan.den@gmail.com>",
@@ -29,10 +29,11 @@
     "build": "rm -rf ./dist && tsc && chmod +x ./dist/cli.js",
     "test": "jest",
     "prepublishOnly": "yarn build && yarn test",
+    "postinstall": "tsc && chmod +x ./dist/cli.js",
     "postpublish": "git tag v$npm_package_version && git push --tags"
   },
   "bin": {
-    "generate-graphql-client": "ts-node ./src/cli.ts"
+    "generate-graphql-client": "./dist/cli.js"
   },
   "devDependencies": {
     "@types/common-tags": "^1.8.0",
@@ -67,7 +68,6 @@
     "rimraf": "^2.6.3",
     "rxjs": "^6.4.0",
     "subscriptions-transport-ws": "^0.9.15",
-    "ts-node": "^8.3.0",
     "ws": "^6.1.4"
   },
   "jest": {
