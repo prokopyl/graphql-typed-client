@@ -48,4 +48,4 @@ export const renderTyping = (
   undefinableValues: boolean,
   undefinableFields: boolean,
   root = true,
-) => render(type, false, root, undefinableValues, undefinableFields)
+): string => render(type, false, root, undefinableValues, undefinableFields)

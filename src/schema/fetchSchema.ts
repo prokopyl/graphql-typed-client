@@ -1,5 +1,5 @@
 import 'isomorphic-fetch'
-import { buildClientSchema, ExecutionResult, getIntrospectionQuery, IntrospectionQuery } from 'graphql'
+import { buildClientSchema, ExecutionResult, getIntrospectionQuery, GraphQLSchema, IntrospectionQuery } from 'graphql'
 import { GraphQLSchemaValidationOptions } from 'graphql/type/schema'
 import qs from 'qs'
 
@@ -17,7 +17,7 @@ export const post = <T>(uri: string, body: { [arg: string]: any }): Promise<T> =
     headers: { 'Content-Type': 'application/json' },
   }).then(r => r.json())
 
-export const fetchSchema = async (endpoint: string, usePost = false, options?: GraphQLSchemaValidationOptions) => {
+export const fetchSchema = async (endpoint: string, usePost = false, options?: GraphQLSchemaValidationOptions): Promise<GraphQLSchema> => {
   const result = usePost
     ? await post<ExecutionResult<IntrospectionQuery>>(endpoint, { query: getIntrospectionQuery() })
     : await get<ExecutionResult<IntrospectionQuery>>(endpoint, { query: getIntrospectionQuery() })
@@ -29,7 +29,7 @@ export const fetchSchema = async (endpoint: string, usePost = false, options?: G
   return buildClientSchema(result.data, options)
 }
 
-export const customFetchSchema = async (fetcher: SchemaFetcher, options?: GraphQLSchemaValidationOptions) => {
+export const customFetchSchema = async (fetcher: SchemaFetcher, options?: GraphQLSchemaValidationOptions): Promise<GraphQLSchema> => {
   const result = await fetcher(getIntrospectionQuery(), fetch, qs)
 
   if (!result.data) {
