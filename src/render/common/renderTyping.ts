@@ -43,7 +43,7 @@ const render = (
   return render((<GraphQLNonNull<any>>type).ofType, true, false, undefinableValues, undefinableFields)
 }
 
-export const renderTyping = (
+export const renderTyping: (type: GraphQLOutputType | GraphQLInputType, undefinableValues: boolean, undefinableFields: boolean, root?: boolean) => string = (
   type: GraphQLOutputType | GraphQLInputType,
   undefinableValues: boolean,
   undefinableFields: boolean,
