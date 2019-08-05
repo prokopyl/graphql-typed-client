@@ -26,7 +26,7 @@
   "author": "helios1138 <revan.den@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist && tsc && chmod +x ./dist/cli.js",
+    "build": "rm -rf ./dist && yarn run tsc && chmod +x ./dist/cli.js",
     "test": "jest",
     "prepublishOnly": "yarn build && yarn test",
     "postinstall": "yarn build",
