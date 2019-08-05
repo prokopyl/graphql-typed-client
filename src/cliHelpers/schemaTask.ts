@@ -1,4 +1,4 @@
-import { buildASTSchema, assertValidSchema, GraphQLSchema } from 'graphql'
+import { buildASTSchema, assertValidSchema, GraphQLSchema, DocumentNode } from 'graphql'
 import { ListrTask } from 'listr'
 import { Config } from '../config'
 import { requireModuleFromPath } from '../helpers/files'
@@ -33,7 +33,7 @@ export const schemaTask = (config: Config): ListrTask => {
       task: async ctx => {
         const options = config.options && config.options.schemaBuild
         const document = await loadSchema(schema)
-        ctx.schema = document instanceof GraphQLSchema ? document : buildASTSchema(document, options)
+        ctx.schema = document instanceof GraphQLSchema ? document : buildASTSchema(document as DocumentNode, options)
 
         try {
           assertValidSchema(ctx.schema)
