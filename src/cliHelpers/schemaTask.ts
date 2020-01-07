@@ -3,7 +3,7 @@ import { ListrTask } from 'listr'
 import { Config } from '../config'
 import { requireModuleFromPath } from '../helpers/files'
 import { customFetchSchema, fetchSchema, SchemaFetcher } from '../schema/fetchSchema'
-import { loadSchema } from 'graphql-toolkit'
+import { loadSchema } from '@graphql-toolkit/core'
 
 export const schemaTask = (config: Config): ListrTask => {
   if (config.endpoint) {
@@ -32,6 +32,7 @@ export const schemaTask = (config: Config): ListrTask => {
       title: 'loading schema',
       task: async ctx => {
         const options = config.options && config.options.schemaBuild
+        // @ts-ignore
         const document = await loadSchema(schema)
         ctx.schema = document instanceof GraphQLSchema ? document : buildASTSchema(document as DocumentNode, options)
 

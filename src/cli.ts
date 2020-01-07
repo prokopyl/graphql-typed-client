@@ -2,7 +2,7 @@
 
 import program from 'commander'
 import Listr from 'listr'
-import chalk from 'chalk'
+import * as chalk from 'chalk'
 import { task } from './cliHelpers/task'
 import { validateConfigs } from './cliHelpers/validateConfigs'
 

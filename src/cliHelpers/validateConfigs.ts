@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+import * as chalk from 'chalk'
 import { Config } from '../config'
 
 export const validateConfigs = (configs: Config[]) => {
